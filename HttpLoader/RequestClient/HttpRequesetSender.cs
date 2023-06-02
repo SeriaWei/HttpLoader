@@ -17,9 +17,9 @@ namespace HttpLoader.RequestClient
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42");
             _request = httpRequest;
         }
-        public async Task SendAsync()
+        public async Task<HttpResponseMessage> SendAsync()
         {
-            await _httpClient.SendAsync(_request.ConvertToHttpRequestMessage());
+            return await _httpClient.SendAsync(_request.ConvertToHttpRequestMessage());
         }
         public string Action { get { return _request.Method + " " + _request.Url; } }
     }

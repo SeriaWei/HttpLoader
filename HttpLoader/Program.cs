@@ -36,7 +36,9 @@ namespace HttpLoader
                     while (true)
                     {
                         Console.WriteLine(sender.Action);
-                        await sender.SendAsync();
+                        var start = DateTime.Now;
+                        var response = await sender.SendAsync();
+                        Console.WriteLine(response.StatusCode + " " + (DateTime.Now - start).TotalMilliseconds + "ms");
                         await Task.Delay(delay);
                     }
                 });
